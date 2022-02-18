@@ -160,9 +160,7 @@ class TestQueryResult < MiniTest::Test
       )
     end
 
-    field :users, PersonConnection, null: true do
-      argument :first, Integer, required: false
-    end
+    field :users, PersonConnection, null: true
 
     def users
       [
@@ -230,7 +228,7 @@ class TestQueryResult < MiniTest::Test
   end
 
   def teardown
-    Temp.constants.each do |sym|
+    Temp.constants(false).each do |sym|
       Temp.send(:remove_const, sym)
     end
   end

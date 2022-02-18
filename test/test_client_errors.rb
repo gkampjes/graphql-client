@@ -56,7 +56,7 @@ class TestClientErrors < MiniTest::Test
   class Schema < GraphQL::Schema
     query(QueryType)
 
-    if defined?(GraphQL::Execution::Interpreter)
+    if defined?(GraphQL::Execution::Interpreter) && GraphQL::Execution::Interpreter.respond_to?(:use)
       use GraphQL::Execution::Interpreter
       use GraphQL::Analysis::AST
     end
@@ -354,7 +354,7 @@ class TestClientErrors < MiniTest::Test
     assert_nil response.data.node
     # This list-error handling behavior is broken for class-based schemas that don't use the interpreter.
     # The fix is an `.is_a?` check in `proxy_to_depth` in member_instrumentation.rb
-    if defined?(GraphQL::Execution::Interpreter)
+    if defined?(GraphQL::Execution::Interpreter) && GraphQL::Execution::Interpreter.respond_to?(:use)
       assert_nil response.data.nodes[0]
     end
     assert response.data.nodes[1]
@@ -363,7 +363,7 @@ class TestClientErrors < MiniTest::Test
     refute_empty response.data.errors
     assert_equal "missing node", response.data.errors["node"][0]
     # This error isn't added in class-based schemas + `Execution::Execute`, same bug as above
-    if defined?(GraphQL::Execution::Interpreter)
+    if defined?(GraphQL::Execution::Interpreter) && GraphQL::Execution::Interpreter.respond_to?(:use)
       assert_equal "missing node", response.data.nodes.errors[0][0]
     end
   end

@@ -33,7 +33,7 @@ class TestClientCreateOperation < MiniTest::Test
     query(QueryType)
     mutation(MutationType)
 
-    if defined?(GraphQL::Execution::Interpreter)
+    if defined?(GraphQL::Execution::Interpreter) && GraphQL::Execution::Interpreter.respond_to?(:use)
       use GraphQL::Execution::Interpreter
       use GraphQL::Analysis::AST
     end
