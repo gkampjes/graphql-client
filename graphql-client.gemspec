@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.files = Dir["README.md", "LICENSE", "lib/**/*.rb"]
 
   s.add_dependency "activesupport", ">= 3.0"
-  s.add_dependency "graphql", "~> 1.10"
+  s.add_dependency "graphql", [">= 1.10", "< 3.0"]
 
   s.add_development_dependency "actionpack", ">= 3.2.22"
   s.add_development_dependency "erubi", "~> 1.6"
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop-github", "~> 0.10", "<= 0.16.0"
   s.add_development_dependency "rubocop", "~> 0.55"
 
-  s.required_ruby_version = ">= 2.1.0"
+  s.required_ruby_version = ">= 2.2.0"
 
   s.email = "engineering@github.com"
   s.authors = "GitHub"

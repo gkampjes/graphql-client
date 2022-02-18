@@ -15,6 +15,7 @@ jobs:
         graphql_version:
           - 1.10.14
           - 1.11.1
+          - 2.0.0
         rails_version:
           - "~> 5.2.0"
           - "~> 6.0.0"
