@@ -343,11 +343,8 @@ class TestQueryResult < MiniTest::Test
 
     person = Temp::Person.new(@client.query(Temp::Query).data.me)
 
-    begin
+    assert_raises GraphQL::Client::UnimplementedFieldError, "undefined field `nickname' on Person type. https://git.io/v1y3m" do
       person.nickname
-      flunk
-    rescue GraphQL::Client::UnimplementedFieldError => e
-      assert_equal "undefined field `nickname' on Person type. https://git.io/v1y3m", e.to_s
     end
   end
 
